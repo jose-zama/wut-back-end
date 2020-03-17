@@ -1,5 +1,7 @@
 from ...Usecase.ML import ClassificationAlgorithm
 from spacy.lang.en.examples import sentences
+from ...PyTorchModelLSTM.PyTorchModel import predict
+#from PyTorchModelLSTM.PyTorchModel import predict
 from nltk.corpus import stopwords
 from torchtext import data
 
@@ -12,12 +14,10 @@ import torch
 import numpy as np
 import pandas as pd
 
-
 class PytorchClassificationAlgorithm(ClassificationAlgorithm):
 
     def classify(self, movements):
-        return {
-            "Movements": [
-                {"Category": "Entertainment", "Movement": "Cheves en la azotea"}
-            ]
-        }
+        #prediction = predict("../PyTorchModelLSTM/Datasets/test.csv")
+        prediction = predict(movements)
+        print(prediction)
+        return prediction
