@@ -1,7 +1,6 @@
 from ...Usecase.ML import ClassificationAlgorithm
 from spacy.lang.en.examples import sentences
-from ...PyTorchModelLSTM.PyTorchModel import predict
-#from PyTorchModelLSTM.PyTorchModel import predict
+from ...PyTorchModelLSTM.ModelWrapper import predict
 from nltk.corpus import stopwords
 from torchtext import data
 
