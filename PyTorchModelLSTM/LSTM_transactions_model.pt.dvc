@@ -1,0 +1,7 @@
+md5: 7a29c4d232d32e1280d90c2988280bba
+outs:
+- md5: 55a20e48e7844d852b3211113e5ec618
+  path: LSTM_transactions_model.pt
+  cache: true
+  metric: false
+  persist: false
