@@ -13,7 +13,7 @@ With python installed:
 # cd App && ./start.sh 
 ```
 
-With Docker:
+OR With Docker:
 ```
 # docker build -t classifier-image .
 # docker run -d --rm -p 5000:5000 -v "$PWD":/usr/src/app/ --name classifier classifier-image
