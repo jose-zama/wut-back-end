@@ -1,0 +1,7 @@
+md5: 15dbcfc27a4d456b73d7d6bb5a06071d
+outs:
+- md5: 5a31a4160f1f19547141fff823f3f31c
+  path: trainPyTorchModel.ipynb
+  cache: true
+  metric: false
+  persist: false
