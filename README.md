@@ -28,4 +28,7 @@ walmart
 uber'
 ```
 
+# Model development
+
+You need jupyter beforehand.
 
