@@ -2,3 +2,4 @@
 /importPyTorchModel.ipynb
 /pytorchenv.yml
 /trainPyTorchModel.ipynb
+.vector_cache/
