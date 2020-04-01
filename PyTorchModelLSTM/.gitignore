@@ -1,6 +1,3 @@
 /LSTM_transactions_model.pt
-/importPyTorchModel.ipynb
 /pytorchenv.yml
-/trainPyTorchModel.ipynb
 .vector_cache/
-/results.txt
