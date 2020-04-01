@@ -1,23 +1,23 @@
-md5: 5a2f8f59d796568f276fa90052cf4d48
-cmd: ipython model_trainer.py
+md5: b2bc6115cdba32584ed77dd63e34beb4
+cmd: python src/main.py
 deps:
-- md5: 434c17688dbe4f5230274a72ba7255b7
-  path: Datasets/trainingFinal.csv
-- md5: ba85ecb5230a16bd48c37bad8d7b5859
-  path: model_trainer.py
+- md5: 9fcb254a91d846d2fdb7681e1f57329e
+  path: Datasets/training-data.csv
+- md5: 0db58bd726bbdad95788368529f3cfc0.dir
+  path: src
 outs:
-- md5: bcc123463ed46521c8bb807a2db097e8
-  path: LSTM_transactions_model.pt
+- md5: 1a063303fa8550bba565529b3cd6ed56
+  path: Output/LSTM_transactions_model.pt
   cache: true
   metric: false
   persist: false
-- md5: 747cda173b15dfc2b9e0fb53080360d7
-  path: Datasets/val.csv
+- md5: ea21cfbee8ed1a614053fdcbee95d4fc
+  path: Datasets/validation.csv
   cache: true
   metric: false
   persist: false
-- md5: 431aa63af6d98c753a06d8b3f3ebd05b
-  path: Datasets/train.csv
+- md5: de42ee07f9f3e02ebda68814ab9bcb8a
+  path: Datasets/training.csv
   cache: true
   metric: false
   persist: false
