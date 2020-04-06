@@ -1,19 +1,16 @@
 
-import numpy as np 
-import pandas as pd 
+import re
+
+import numpy as np
+import pandas as pd
+import spacy
 import torch
 import torchtext
-from torchtext import data
-import spacy
-import os
-import re
-import nltk
 from nltk.corpus import stopwords
-import torch.nn as nn
-import torch.nn.functional as F
-from sklearn.metrics import roc_auc_score
-from spacy.lang.en.examples import sentences 
+from torchtext import data
+
 from .ModelSchema import LSTM_Model
+
 
 ##### 1. Upload the Model
 def predict(datazama):
@@ -26,16 +23,15 @@ def predict(datazama):
     print(datazama)
 
     # Load columns
-    #columns = pd.read_csv("../PyTorchModelLSTM/Datasets/test.csv")
-    columns = pd.read_csv("../PyTorchModelLSTM/Datasets/train.csv")
+    columns = pd.read_csv("../PyTorchModelLSTM/Datasets/training.csv")
     columns = columns.columns[1:]
 
 
     # Load work embeddings english and spanish from spacy
     my_tok = spacy.load('en_core_web_sm')
     my_stopwords = spacy.lang.en.stop_words.STOP_WORDS
-    STOPWORDS = set(stopwords.words('spanish'))
-    my_stopwords.update(STOPWORDS)
+    # STOPWORDS = set(stopwords.words('spanish'))
+    # my_stopwords.update(STOPWORDS)
 
 
 
@@ -58,7 +54,7 @@ def predict(datazama):
                  ("Transfer", LABEL), ("Travel", LABEL), ("Withdrawal", LABEL)]
 
 
-    train, val = data.TabularDataset.splits(path="../PyTorchModelLSTM/Datasets/",train="train.csv", validation="val.csv", format="csv", fields=dataFields, skip_header=True)
+    train, val = data.TabularDataset.splits(path="../PyTorchModelLSTM/Datasets/",train="training.csv", validation="validation.csv", format="csv", fields=dataFields, skip_header=True)
 
 
     # Build the vocabulary
@@ -71,7 +67,7 @@ def predict(datazama):
 
     # loadad the model
     model = LSTM_Model(len(columns),len(TEXT.vocab),vectors,1)
-    model.load_state_dict(torch.load("../PyTorchModelLSTM/LSTM_transactions_model.pt"))
+    model.load_state_dict(torch.load("../PyTorchModelLSTM/Output/LSTM_transactions_model.pt"))
 
 
     # Read csv test file
