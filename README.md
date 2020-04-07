@@ -28,9 +28,12 @@ walmart
 uber'
 ```
 
-# Model development
+# Test
 
-You need jupyter beforehand.
+To run classifier model tests:
+```
+python -m unittest discover -s ./PyTorchModelLSTM
+```
 
 # Deployment
 
