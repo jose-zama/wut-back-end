@@ -2,7 +2,7 @@ from flask import Flask
 from flask import request, jsonify
 from flask_json_schema import JsonSchema, JsonValidationError
 from flask_cors import CORS
-from ModelWrapper import predict
+from src.ModelWrapper import predict
 
 app = Flask(__name__)
 # app.config['SERVER_NAME'] = 'ec2-3-87-106-62.compute-1.amazonaws.com:5000'

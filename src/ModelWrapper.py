@@ -8,9 +8,9 @@ import torchtext
 from torchtext import data
 from pathlib import Path
 
-from ModelSchema import LSTM_Model
+from src.ModelSchema import LSTM_Model
 
-dataset_path = Path("./Datasets")
+dataset_path = Path("../Datasets")
 
 
 ##### 1. Upload the Model
@@ -65,14 +65,14 @@ def predict(transactions):
 
     # Build the vocabulary
     TEXT.build_vocab(train, val, vectors=['fasttext.simple.300d'],
-                     vectors_cache=Path(__file__).parent / ".vector_cache")
+                     vectors_cache=Path(__file__).parent / "../.vector_cache")
 
     # Convert tabular dataset to vocabulary vectors
     vectors = train.fields['Details'].vocab.vectors.to("cpu")
 
     # loadad the model
     model = LSTM_Model(len(columns), len(TEXT.vocab), vectors, 1)
-    model.load_state_dict(torch.load(Path(__file__).parent / "Output/LSTM_transactions_model.pt"))
+    model.load_state_dict(torch.load(Path(__file__).parent / "../Output/LSTM_transactions_model.pt"))
 
     # Read csv test file
     dfTest = pd.read_csv(movs_temp)

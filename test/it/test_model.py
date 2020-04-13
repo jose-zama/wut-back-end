@@ -1,5 +1,5 @@
 import unittest
-from ModelWrapper import predict
+from src.ModelWrapper import predict
 
 
 class ModelTest(unittest.TestCase):
