@@ -23,8 +23,7 @@ OR With Docker:
 ```
 curl --location --request POST 'localhost:5000/classification/movements' \
 --header 'Content-Type: text/plain' \
---data-raw 'Details
-walmart
+--data-raw 'walmart
 uber'
 ```
 
