@@ -5,11 +5,12 @@ import pandas as pd
 import spacy
 import torch
 import torchtext
-from nltk.corpus import stopwords
 from torchtext import data
 from pathlib import Path
 
-from PyTorchModelLSTM.ModelSchema import LSTM_Model
+from ModelSchema import LSTM_Model
+
+dataset_path = Path("./Datasets")
 
 
 ##### 1. Upload the Model
@@ -25,13 +26,13 @@ def predict(transactions):
 
     """
     transactions = 'Details\n' + transactions
-    data_path = Path(__file__).parent / "movs_temp.csv"
-    temp = open(data_path, "w")
+    movs_temp = Path(__file__).parent / "movs_temp.csv"
+    temp = open(movs_temp, "w")
     temp.write(transactions)
     temp.close()
 
     # Load columns
-    columns = pd.read_csv(Path(__file__).parent / "../PyTorchModelLSTM/Datasets/training.csv")
+    columns = pd.read_csv(Path(__file__).parent / dataset_path / "training.csv")
     columns = columns.columns[1:]
 
     # Load work embeddings english and spanish from spacy
@@ -57,7 +58,7 @@ def predict(transactions):
                   ("Health & Fitness", LABEL), ("Shopping", LABEL),
                   ("Transfer", LABEL), ("Travel", LABEL), ("Withdrawal", LABEL)]
 
-    train, val = data.TabularDataset.splits(path=Path(__file__).parent / "../PyTorchModelLSTM/Datasets/",
+    train, val = data.TabularDataset.splits(path=Path(__file__).parent / dataset_path,
                                             train="training.csv",
                                             validation="validation.csv", format="csv", fields=dataFields,
                                             skip_header=True)
@@ -71,12 +72,12 @@ def predict(transactions):
 
     # loadad the model
     model = LSTM_Model(len(columns), len(TEXT.vocab), vectors, 1)
-    model.load_state_dict(torch.load(Path(__file__).parent / "../PyTorchModelLSTM/Output/LSTM_transactions_model.pt"))
+    model.load_state_dict(torch.load(Path(__file__).parent / "Output/LSTM_transactions_model.pt"))
 
     # Read csv test file
-    dfTest = pd.read_csv(data_path)
+    dfTest = pd.read_csv(movs_temp)
     dataFields = [("Details", TEXT)]
-    testDataset = data.TabularDataset(path=data_path, format='csv', fields=dataFields, skip_header=True)
+    testDataset = data.TabularDataset(path=movs_temp, format='csv', fields=dataFields, skip_header=True)
     test_iter1 = torchtext.data.Iterator(testDataset, batch_size=32, device=torch.device('cpu'), sort=False,
                                          sort_within_batch=False, repeat=False, shuffle=False)
 
@@ -107,7 +108,7 @@ def predict(transactions):
 
     dfTest["Prediction"] = best
     dfTest = dfTest[["Details", "Prediction"]]
-    dfTest.to_csv(Path(__file__).parent / "../PyTorchModelLSTM/Datasets/output.csv", index=False)
-    pd.read_csv(Path(__file__).parent / "../PyTorchModelLSTM/Datasets/output.csv").head()
+    dfTest.to_csv(Path(__file__).parent / dataset_path / "output.csv", index=False)
+    pd.read_csv(Path(__file__).parent / dataset_path / "output.csv").head()
 
     return dfTest.to_csv(index=False)

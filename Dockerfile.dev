@@ -11,6 +11,5 @@ COPY post-install.py ./
 RUN python post-install.py
 
 # Run server
-WORKDIR /usr/src/app/App
 RUN export FLASK_ENV=development
 CMD ./start_prod.sh

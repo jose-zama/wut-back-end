@@ -12,16 +12,11 @@ RUN python post-install.py
 
 # Copy project
 # We should have a dist folder and just copy it
-COPY Adapter/ ./Adapter/
-COPY App/ ./App/
-COPY Conf ./Conf/
-COPY Usecase ./Usecase/
-COPY PyTorchModelLSTM/src/ ./PyTorchModelLSTM/src/
-COPY PyTorchModelLSTM/Output/ ./PyTorchModelLSTM/Output/
-COPY PyTorchModelLSTM/Datasets/ ./PyTorchModelLSTM/Datasets/
-COPY PyTorchModelLSTM/*.py PyTorchModelLSTM/
-COPY __init__.py ./
+COPY src/ ./src/
+COPY Output/ ./Output/
+COPY Datasets/ ./Datasets/
+COPY *.py ./
+COPY start_prod.sh ./start_prod.sh
 
 # Run server
-WORKDIR /usr/src/app/App
 CMD ./start_prod.sh

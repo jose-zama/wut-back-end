@@ -43,7 +43,7 @@ df = pd.read_csv("Datasets/trainingFinal.csv")
 train, val = train_test_split(df, test_size=0.2)
 train.to_csv("Datasets/train.csv", index_label=False, index=False)
 val.to_csv("Datasets/val.csv", index_label=False, index=False)
-train,val = data.TabularDataset.splits(path="Datasets/",train="train.csv", validation="val.csv", format="csv", 
+train,val = data.TabularDataset.splits(path="Datasets/", train="train.csv", validation="val.csv", format="csv",
                                        fields=dataFields, skip_header=True)
 
 
@@ -173,10 +173,10 @@ dfTest = pd.read_csv("Datasets/test.csv")
 # In[22]:
 
 dataFields = [("Details", TEXT)]
-testDataset= data.TabularDataset(path='Datasets/test.csv', 
-                                            format='csv',
-                                            fields=dataFields, 
-                                            skip_header=True)
+testDataset= data.TabularDataset(path='Datasets/test.csv',
+                                 format='csv',
+                                 fields=dataFields,
+                                 skip_header=True)
 
 
 # In[23]:

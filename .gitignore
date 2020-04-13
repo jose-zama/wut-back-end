@@ -220,3 +220,5 @@ __pycache__/
 # End of https://www.gitignore.io/api/python,pycharm+all
 
 .DS_Store
+/Output
+/.vector_cache/

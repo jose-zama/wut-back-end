@@ -1,5 +1,5 @@
 import unittest
-from PyTorchModelLSTM.ModelWrapper import predict
+from ModelWrapper import predict
 
 
 class ModelTest(unittest.TestCase):

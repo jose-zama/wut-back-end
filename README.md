@@ -10,7 +10,7 @@ With python installed (we recommend to use a venv enviroment):
   >>> import nltk
   >>> nltk.download('stopwords')
   >>> exit()
-# cd App && ./start.sh 
+# ./start.sh 
 ```
 
 OR With Docker:
@@ -40,6 +40,6 @@ python -m unittest discover -s ./PyTorchModelLSTM
 `Dockerfile` copy the project instead, but still a volume has to be used to write `.vector_cache`
 ```
 docker build -t classifier-image .
-docker run -d --rm -p 5000:5000 -v "$PWD":/usr/src/app/App/.vector_cache --name classifier classifier-image
+docker run -d --rm -p 5000:5000 -v "$PWD"/.vector_cache:/usr/src/app/.vector_cache --name classifier classifier-image
 ```
 

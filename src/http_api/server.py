@@ -1,28 +1,27 @@
 from flask import Flask
 from flask import request, jsonify
 from flask_json_schema import JsonSchema, JsonValidationError
-from ..Conf.container import Controllers
-from .validation import check_movements_schema
 from flask_cors import CORS
+from ModelWrapper import predict
 
 app = Flask(__name__)
-#app.config['SERVER_NAME'] = 'ec2-3-87-106-62.compute-1.amazonaws.com:5000'
+# app.config['SERVER_NAME'] = 'ec2-3-87-106-62.compute-1.amazonaws.com:5000'
 schema = JsonSchema(app)
 CORS(app)
-app_controller = Controllers.app()
 app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 @app.route('/healthcheck')
 def health_check():
-    return app_controller.healthcheck()
+    return 'OK'
 
 
 @app.route('/classification/movements', methods=['POST'])
-#@schema.validate(check_movements_schema)
+# @schema.validate(check_movements_schema)
 def check_movements():
-    result = app_controller.check_movements(request.data.decode("utf-8"))
-    #result = "hola nana pancha";
+    result = predict(request.data.decode("utf-8"))
     return result
+
 
 @app.errorhandler(404)
 def error_handler(error):
@@ -32,5 +31,3 @@ def error_handler(error):
 @app.errorhandler(JsonValidationError)
 def validation_error(e):
     return jsonify({'error': e.message, 'errors': [error.message for error in e.errors]}), 400
-
-
