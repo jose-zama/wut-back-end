@@ -31,7 +31,7 @@ uber'
 
 To run classifier model tests:
 ```
-python -m unittest discover -s ./PyTorchModelLSTM
+python -m unittest
 ```
 
 # Deployment
