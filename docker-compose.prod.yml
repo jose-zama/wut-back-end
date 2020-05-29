@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+  model:
+    build:
+      target: prod
+    volumes:
+      - "./.vector_cache:/usr/src/app/.vector_cache"

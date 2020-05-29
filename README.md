@@ -1,7 +1,13 @@
-# Installation
+# Development
 
 Clone the repository and then:
 
+## With Docker:
+```
+# docker-compose up
+```
+
+## In a traditional way: 
 With python installed (we recommend to use a venv enviroment):
 ```
 # pip install -r requirements-dev.txt
@@ -11,12 +17,6 @@ With python installed (we recommend to use a venv enviroment):
   >>> nltk.download('stopwords')
   >>> exit()
 # ./start.sh 
-```
-
-OR With Docker:
-```
-# docker build -f Dockerfile.dev -t classifier-image-dev .
-# docker run -d --rm -p 5000:5000 -v "$PWD":/usr/src/app/ --name classifier classifier-image-dev
 ```
 
 # Play
@@ -34,11 +34,10 @@ To run classifier model tests:
 python -m unittest
 ```
 
-# Deployment
+# Production
 
-`Dockerfile` copy the project instead, but still a volume has to be used to write `.vector_cache`
+`Dockerfile` copy the project instead, but still a volume has to be used to write `.vector_cache`.
 ```
-docker build -t classifier-image .
-docker run -d --rm -p 5000:5000 -v "$PWD"/.vector_cache:/usr/src/app/.vector_cache --name classifier classifier-image
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build
 ```
 
