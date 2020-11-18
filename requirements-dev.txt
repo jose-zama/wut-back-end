@@ -2,4 +2,4 @@
 boto3==1.12.39
 dvc>=0.91.0
 matplotlib==3.2.1
-notebook==6.0.3
+notebook==6.1.5
