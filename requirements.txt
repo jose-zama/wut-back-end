@@ -7,7 +7,7 @@ Click==7.0
 cymem==2.0.2
 dependency-injector==3.14.10
 Flask==1.1.1
-Flask-Cors==3.0.8
+Flask-Cors==3.0.9
 Flask-json-schema==0.0.5
 future==0.17.1
 idna==2.8
